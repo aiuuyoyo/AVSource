@@ -310,9 +310,10 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         JokeDao jokeDao = app.getJokeDao();
         jokeDao.deleteAll();
-        for (Joke n : data) {
-            jokeDao.insert(n);
-        }
+//        for (Joke n : data) {
+//            jokeDao.insert(n);
+//        }
+        jokeDao.insertInTx(data);
         tmp.delete();
         System.out.println("Congratulations ! Jokes Insert");
     }
@@ -330,9 +331,10 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         NovelDao novelDao = app.getNovelDao();
         novelDao.deleteAll();
-        for (Novel n : data) {
-            novelDao.insert(n);
-        }
+//        for (Novel n : data) {
+//            novelDao.insert(n);
+//        }
+        novelDao.insertInTx(data);
         tmp.delete();
         System.out.println("Congratulations ! Novels Insert");
     }
