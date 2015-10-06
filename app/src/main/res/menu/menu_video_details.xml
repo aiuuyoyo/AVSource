@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.aiuuyoyo.quicksearch.VideoDetailsActivity">
+    <item
+        android:id="@+id/actiont_refresh"
+        android:orderInCategory="100"
+        android:title="@string/action_refresh"
+        android:icon="@mipmap/ic_autorenew_black"
+        app:showAsAction="always" />
+</menu>
