@@ -49,6 +49,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.zip.GZIPInputStream;
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
     private static final String APP_ID = "243652715a41a984";
@@ -279,63 +280,39 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
     private void writeImagesToDb(AVApplication app) throws IOException {
         InputStream in = getAssets().open("images2.txt");
-        File tmp = new File(Environment.getExternalStorageDirectory(), "images.txt");
-        GZIP.readGzip(in, tmp);
-        FileInputStream inputStream = new FileInputStream(tmp);
-
+        GZIPInputStream zin = new GZIPInputStream(in);
         ObjectMapper om = new ObjectMapper();
-        List<Image> data = om.readValue(inputStream, new TypeReference<List<Image>>() {
+        List<Image> data = om.readValue(zin, new TypeReference<List<Image>>() {
         });
-        inputStream.close();
-
         ImageDao imageDao = app.getImageDao();
         imageDao.deleteAll();
         for (Image m : data) {
             imageDao.insert(m);
         }
-        tmp.delete();
         System.out.println("Congratulations ! Images Insert");
     }
 
     private void writeXiaohuaToDb(AVApplication app) throws IOException {
         InputStream in = getAssets().open("jokes2.txt");
-        File tmp = new File(Environment.getExternalStorageDirectory(), "jokes.txt");
-        GZIP.readGzip(in, tmp);
-        FileInputStream inputStream = new FileInputStream(tmp);
-
+        GZIPInputStream zin = new GZIPInputStream(in);
         ObjectMapper om = new ObjectMapper();
-        List<Joke> data = om.readValue(inputStream, new TypeReference<List<Joke>>() {
+        List<Joke> data = om.readValue(zin, new TypeReference<List<Joke>>() {
         });
-        inputStream.close();
-
         JokeDao jokeDao = app.getJokeDao();
         jokeDao.deleteAll();
-//        for (Joke n : data) {
-//            jokeDao.insert(n);
-//        }
         jokeDao.insertInTx(data);
-        tmp.delete();
         System.out.println("Congratulations ! Jokes Insert");
     }
 
     private void writeQingganToDb(AVApplication app) throws IOException {
         InputStream in = getAssets().open("novels2.txt");
-        File tmp = new File(Environment.getExternalStorageDirectory(), "novels.txt");
-        GZIP.readGzip(in, tmp);
-        FileInputStream inputStream = new FileInputStream(tmp);
-
+        GZIPInputStream zin = new GZIPInputStream(in);
         ObjectMapper om = new ObjectMapper();
-        List<Novel> data = om.readValue(inputStream, new TypeReference<List<Novel>>() {
+        List<Novel> data = om.readValue(zin, new TypeReference<List<Novel>>() {
         });
-        inputStream.close();
-
         NovelDao novelDao = app.getNovelDao();
         novelDao.deleteAll();
-//        for (Novel n : data) {
-//            novelDao.insert(n);
-//        }
         novelDao.insertInTx(data);
-        tmp.delete();
         System.out.println("Congratulations ! Novels Insert");
     }
 
