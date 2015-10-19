@@ -8,6 +8,13 @@ import java.io.InputStream;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
+import okio.Buffer;
+import okio.GzipSink;
+import okio.GzipSource;
+import okio.Sink;
+import okio.Source;
+import okio.Timeout;
+
 public class GZIP {
 
 //	public static void writeGzip(File inf, File zipf) throws IOException {
