@@ -1,6 +1,7 @@
 package com.q.s.quicksearch;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -276,6 +277,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             progressDialog.dismiss();
             progressDialog = null;
         }
+
     }
 
     private void writeImagesToDb(AVApplication app) throws IOException {
