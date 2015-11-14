@@ -110,6 +110,14 @@ public class VideoDetailsActivity extends ActionBarActivity {
             Animation animation = AnimationUtils.loadAnimation(this, R.anim.roate);
             animation.setInterpolator(new LinearInterpolator());
             loadImageView.startAnimation(animation);
+            loadImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (totalCount == completeCount) {
+                        refresh();
+                    }
+                }
+            });
             item.setActionView(loadImageView);
         }
         return super.onPrepareOptionsMenu(menu);
