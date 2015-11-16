@@ -107,13 +107,14 @@ public class VideoDetailsActivity extends ActionBarActivity {
             loadImageView.setAdjustViewBounds(true);
             int padding = (int) getResources().getDimension(R.dimen.activity_horizontal_margin);
             loadImageView.setPadding(padding, padding, padding, padding);
-            Animation animation = AnimationUtils.loadAnimation(this, R.anim.roate);
+            final Animation animation = AnimationUtils.loadAnimation(this, R.anim.roate);
             animation.setInterpolator(new LinearInterpolator());
             loadImageView.startAnimation(animation);
             loadImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (totalCount == completeCount) {
+                        loadImageView.startAnimation(animation);
                         refresh();
                     }
                 }
